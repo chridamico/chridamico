@@ -1,40 +1,138 @@
-<svg width="100%" height="180" viewBox="0 0 800 180" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <rect width="800" height="180" fill="#000000" />
-
-  <!-- Grid pattern -->
+<svg width="1200" height="180" viewBox="0 0 1200 180" xmlns="http://www.w3.org/2000/svg">
   <defs>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M40 0H0V40" fill="none" stroke="#00FF41" stroke-width="0.3" opacity="0.2" />
+      <path d="M40 0H0V40" fill="none" stroke="#00FF41" stroke-width="0.3" opacity="0.1"/>
     </pattern>
-    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#00FF41" stop-opacity="1" />
-      <stop offset="100%" stop-color="#00AA33" stop-opacity="1" />
-    </linearGradient>
+    <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
+      <path d="M0 1 H4" stroke="#00FF41" stroke-width="0.5" stroke-opacity="0.08"/>
+    </pattern>
+    <radialGradient id="screenGlow" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#00FF41" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0D1117" stop-opacity="0"/>
+    </radialGradient>
   </defs>
-  <rect width="800" height="180" fill="url(#grid)" />
 
-  <!-- Glowing name -->
-  <text x="50%" y="55%" font-size="64" font-family="Fira Code, monospace"
-        text-anchor="middle" fill="url(#glow)" stroke="#00FF41" stroke-width="1">
-    Christian_
-  </text>
+  <style>
+    /* Continuous looping animation keyframes */
+    @keyframes intro-visibility {
+      0%    { opacity: 0; } /* Start invisible */
+      3.125%  { opacity: 1; } /* Fade in (0.5s / 16s) */
+      31.25%  { opacity: 1; } /* Hold visible (5s / 16s) */
+      34.375% { opacity: 0; } /* Fade out (5.5s / 16s) */
+      100%  { opacity: 0; } /* Stay invisible */
+    }
 
-  <!-- Cursor blink animation -->
-  <text x="58%" y="55%" font-size="64" font-family="Fira Code, monospace"
-        fill="#00FF41">
-    <tspan id="cursor">|</tspan>
-    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
-  </text>
+    @keyframes terminal-visibility {
+      0%      { opacity: 0; } /* Stay invisible */
+      34.375%   { opacity: 0; } /* Start fade in (5.5s / 16s) */
+      37.5%     { opacity: 1; } /* End fade in (6s / 16s) */
+      96.875%   { opacity: 1; } /* Hold visible (15.5s / 16s) */
+      100%    { opacity: 0; } /* Fade out for loop */
+    }
 
-  <!-- Scanline animation -->
-  <rect x="0" y="-180" width="800" height="180" fill="rgba(0,255,65,0.15)">
-    <animate attributeName="y" from="-180" to="180" dur="3s" repeatCount="indefinite" />
-  </rect>
+    /* Apply the looping animations */
+    #intro-group {
+      animation: intro-visibility 16s infinite;
+    }
+    #terminal-group {
+      animation: terminal-visibility 16s infinite;
+    }
 
-  <!-- Subtext -->
-  <text x="50%" y="80%" font-size="18" font-family="Fira Code, monospace"
-        text-anchor="middle" fill="#00FF41" opacity="0.8">
-    > Coding in progress..._access granted 💻
-  </text>
+    /* Terminal-specific animations (delays are absolute within the 16s loop) */
+    .log-line { opacity: 0; animation: fadeIn 0.5s forwards; }
+    #dashboard-group { opacity: 0; animation: fadeIn 0.5s 9.3s forwards; }
+    @keyframes fadeIn { to { opacity: 1; } }
+  </style>
+
+  <rect width="1200" height="180" fill="#0D1117"/>
+  <rect width="1200" height="180" fill="url(#grid)"/>
+  
+  <g id="intro-group">
+    <rect width="1200" height="180" fill="url(#screenGlow)"/>
+    <text x="50%" y="50%" font-size="64" font-family="Orbitron, monospace" text-anchor="middle" dominant-baseline="middle" fill="#00FF41" filter="url(#glow)">
+      chridamico
+    </text>
+    <text x="50%" y="50%" font-size="64" font-family="Orbitron, monospace" text-anchor="start" fill="#00FF41">
+      <tspan dx="220">_</tspan>
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+    </text>
+    <text x="50%" y="90%" font-size="18" font-family="Orbitron, monospace" text-anchor="middle" fill="#AAAAAA" opacity="0.8">
+      &gt; Developer | Innovator | Tech Enthusiast
+    </text>
+    <rect x="0" y="-180" width="1200" height="180" fill="rgba(0,255,65,0.08)">
+      <animate attributeName="y" from="-180" to="180" dur="3s" repeatCount="indefinite" />
+    </rect>
+  </g>
+
+  <g id="terminal-group">
+    <rect x="5" y="5" width="1190" height="170" rx="10" fill="#161B22" stroke="#30363D" stroke-width="1.5"/>
+    <rect x="5" y="5" width="1190" height="170" rx="10" fill="url(#scanlines)" pointer-events="none"/>
+    <rect x="5" y="5" width="1190" height="170" rx="10" fill="url(#screenGlow)" pointer-events="none"/>
+    <rect x="6" y="6" width="1188" height="30" rx="8" fill="#30363D" fill-opacity="0.5"/>
+    <g transform="translate(20,15)">
+      <circle cx="5" cy="5" r="5" fill="#FF5F56"/>
+      <circle cx="25" cy="5" r="5" fill="#FFBD2E"/>
+      <circle cx="45" cy="5" r="5" fill="#27C93F"/>
+    </g>
+    <text x="600" y="26" font-family="monospace" font-size="12" fill="#C9D1D9" text-anchor="middle">
+      bash -- chridamico@github
+    </text>
+    <text x="30" y="55" font-family="monospace" font-size="16" fill="#C9D1D9">
+      <tspan fill="#A5D6FF">[chridamico@github]</tspan>
+      <tspan> ~ $ </tspan>
+      <tspan>./init_profile.sh</tspan>
+      <tspan fill="#00FF41" dx="5" filter="url(#glow)">
+        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>|
+      </tspan>
+    </text>
+    <g font-family="monospace" font-size="14">
+      <g id="log-group" transform="translate(30, 80)" fill="#C9D1D9">
+        <text y="0"  class="log-line" style="animation-delay: 6s;">&gt; Initializing session...</text>
+        <text y="20" class="log-line" style="animation-delay: 7s;">&gt; Connecting to github.com... <tspan fill="#00FF41">OK</tspan></text>
+        <text y="40" class="log-line" style="animation-delay: 8s;">&gt; User 'chridamico' authenticated.</text>
+        <text y="60" class="log-line" style="animation-delay: 9s;">&gt; Fetching profile metrics... <tspan fill="#00FF41">DONE</tspan></text>
+      </g>
+      <g id="dashboard-group" transform="translate(600, 50)">
+        <rect x="0" y="0" width="570" height="115" rx="8" fill="#21262D" stroke="#30363D"/>
+        <text x="15" y="20" fill="#A5D6FF" font-size="13" font-weight="bold">&gt; GitHub Metrics</text>
+        <g transform="translate(15, 35)" font-size="14">
+          <text y="15" fill="#00FF41" font-weight="bold">📦 Repositories</text>
+          <g transform="translate(160, 10)">
+            <circle cx="20" cy="0" r="15" fill="none" stroke="#30363D" stroke-width="5"/>
+            <circle cx="20" cy="0" r="15" fill="none" stroke="#00FFAA" stroke-width="5" stroke-dasharray="0 94.2" transform="rotate(-90 20 0)">
+              <animate attributeName="stroke-dasharray" from="0 94.2" to="75 94.2" dur="1s" begin="9.3s" fill="freeze" restart="whenNotVisible"/>
+            </circle>
+          </g>
+          <text y="50" fill="#00FF41" font-weight="bold">⭐ Stars</text>
+          <g transform="translate(160, 45)">
+            <circle cx="20" cy="0" r="15" fill="none" stroke="#30363D" stroke-width="5"/>
+            <circle cx="20" cy="0" r="15" fill="none" stroke="#FFBD2E" stroke-width="5" stroke-dasharray="0 94.2" transform="rotate(-90 20 0)">
+               <animate attributeName="stroke-dasharray" from="0 94.2" to="85 94.2" dur="1s" begin="9.3s" fill="freeze" restart="whenNotVisible"/>
+            </circle>
+          </g>
+          <text x="250" y="15" fill="#00FF41" font-weight="bold">👥 Followers</text>
+          <g transform="translate(380, 8)">
+             <rect width="170" height="10" rx="3" fill="#30363D"/>
+             <rect width="0" height="10" rx="3" fill="#00CFFF">
+               <animate attributeName="width" from="0" to="110" dur="1s" begin="9.3s" fill="freeze" restart="whenNotVisible"/>
+             </rect>
+          </g>
+          <text x="250" y="50" fill="#00FF41" font-weight="bold">💾 Commits</text>
+           <g transform="translate(380, 43)">
+             <rect width="170" height="10" rx="3" fill="#30363D"/>
+             <rect width="0" height="10" rx="3" fill="#FF5FBA">
+               <animate attributeName="width" from="0" to="150" dur="1s" begin="9.3s" fill="freeze" restart="whenNotVisible"/>
+             </rect>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
 </svg>
