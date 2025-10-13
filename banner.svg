@@ -1,19 +1,40 @@
-<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<svg width="100%" height="180" viewBox="0 0 800 180" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="180" fill="#000000" />
+
+  <!-- Grid pattern -->
   <defs>
-    <radialGradient id="grad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#00FFF0" stop-opacity="1"/>
-      <stop offset="100%" stop-color="#0066FF" stop-opacity="1"/>
-    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#00FF41" stroke-width="0.3" opacity="0.2" />
+    </pattern>
+    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00FF41" stop-opacity="1" />
+      <stop offset="100%" stop-color="#00AA33" stop-opacity="1" />
+    </linearGradient>
   </defs>
-  <circle cx="60" cy="60" r="55" fill="url(#grad)" />
-  <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" font-size="40">
-    😎
+  <rect width="800" height="180" fill="url(#grid)" />
+
+  <!-- Glowing name -->
+  <text x="50%" y="55%" font-size="64" font-family="Fira Code, monospace"
+        text-anchor="middle" fill="url(#glow)" stroke="#00FF41" stroke-width="1">
+    Christian_
   </text>
-  <animateTransform
-    attributeName="transform"
-    type="rotate"
-    from="0 60 60"
-    to="360 60 60"
-    dur="4s"
-    repeatCount="indefinite" />
+
+  <!-- Cursor blink animation -->
+  <text x="58%" y="55%" font-size="64" font-family="Fira Code, monospace"
+        fill="#00FF41">
+    <tspan id="cursor">|</tspan>
+    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+  </text>
+
+  <!-- Scanline animation -->
+  <rect x="0" y="-180" width="800" height="180" fill="rgba(0,255,65,0.15)">
+    <animate attributeName="y" from="-180" to="180" dur="3s" repeatCount="indefinite" />
+  </rect>
+
+  <!-- Subtext -->
+  <text x="50%" y="80%" font-size="18" font-family="Fira Code, monospace"
+        text-anchor="middle" fill="#00FF41" opacity="0.8">
+    > Coding in progress..._access granted 💻
+  </text>
 </svg>
