@@ -11,59 +11,57 @@
 
     <!-- Grid pattern -->
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M40 0H0V40" fill="none" stroke="#00FF41" stroke-width="0.3" opacity="0.15"/>
+      <path d="M40 0H0V40" fill="none" stroke="#00FF41" stroke-width="0.3" opacity="0.1"/>
     </pattern>
 
-    <!-- Scanline overlay -->
+    <!-- Scanline pattern -->
     <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
-      <path d="M 0 1 H 4" stroke="#00FF41" stroke-width="0.5" stroke-opacity="0.08"/>
+      <path d="M0 1 H4" stroke="#00FF41" stroke-width="0.5" stroke-opacity="0.08"/>
     </pattern>
-
-    <!-- Gradient for neon glow -->
-    <linearGradient id="neon" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#00FF41"/>
-      <stop offset="100%" stop-color="#00AA33"/>
-    </linearGradient>
   </defs>
 
   <!-- Background -->
   <rect width="800" height="180" fill="#0D1117"/>
-  <rect x="10" y="10" width="780" height="160" rx="8" fill="#161B22" stroke="#30363D" stroke-width="1"/>
+  
+  <!-- Grid overlay -->
+  <rect width="800" height="180" fill="url(#grid)"/>
 
-  <!-- Terminal top bar -->
+  <!-- Terminal window -->
+  <rect x="5" y="5" width="790" height="170" rx="10" fill="#161B22" stroke="#30363D" stroke-width="1.5"/>
+
+  <!-- Top bar buttons -->
   <g transform="translate(20,20)">
     <circle cx="5" cy="5" r="5" fill="#FF5F56"/>
     <circle cx="25" cy="5" r="5" fill="#FFBD2E"/>
     <circle cx="45" cy="5" r="5" fill="#27C93F"/>
   </g>
+
+  <!-- Bash line at top -->
   <text x="400" y="30" font-family="monospace" font-size="12" fill="#C9D1D9" text-anchor="middle">
     bash -- ~
   </text>
 
-  <!-- Grid overlay -->
-  <rect width="800" height="180" fill="url(#grid)" opacity="0.2"/>
-
-  <!-- Terminal prompt with blinking cursor -->
-  <text x="30" y="80" font-family="monospace" font-size="18" fill="#00FF41" filter="url(#glow)">
+  <!-- Main prompt with cursor -->
+  <text x="30" y="70" font-family="monospace" font-size="18" fill="#00FF41" filter="url(#glow)">
     <tspan fill="#A5D6FF">[chridamico@github]</tspan>
-    <tspan> $ Christian_</tspan>
     <tspan>
       <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>|
     </tspan>
   </text>
 
-  <!-- Subtext terminal lines -->
-  <g transform="translate(30,120)" font-family="monospace" font-size="16">
+  <!-- Multiple terminal lines filling space -->
+  <g transform="translate(30,100)" font-family="monospace" font-size="16">
     <text y="0" fill="#C9D1D9">> Loading profile...</text>
     <text y="25" fill="#C9D1D9">> Access granted <tspan fill="#00FF41">✔</tspan></text>
-    <text y="50" fill="#C9D1D9">> Enjoy coding 💻</text>
+    <text y="50" fill="#C9D1D9">> Initializing repositories...</text>
+    <text y="75" fill="#C9D1D9">> Ready for development 💻</text>
   </g>
 
-  <!-- Animated scanline -->
-  <rect x="0" y="-180" width="800" height="180" fill="rgba(0,255,65,0.08)">
+  <!-- Scanline animation -->
+  <rect x="0" y="-180" width="800" height="180" fill="rgba(0,255,65,0.06)">
     <animate attributeName="y" from="-180" to="180" dur="3s" repeatCount="indefinite"/>
   </rect>
 
-  <!-- Scanline overlay -->
-  <rect x="10" y="10" width="780" height="160" fill="url(#scanlines)" pointer-events="none"/>
+  <!-- Static scanline overlay -->
+  <rect x="5" y="5" width="790" height="170" fill="url(#scanlines)" pointer-events="none"/>
 </svg>
