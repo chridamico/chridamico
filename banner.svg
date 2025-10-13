@@ -34,7 +34,7 @@
   <text x="30" y="55" font-family="monospace" font-size="16" fill="#C9D1D9">
     <tspan fill="#A5D6FF">[chridamico@github]</tspan>
     <tspan> ~ $ </tspan>
-    <tspan>./fetch-stats.sh</tspan>
+    <tspan>./welcome.sh</tspan>
     <tspan fill="#00FF41" dx="5" filter="url(#glow)">
       <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>|
     </tspan>
@@ -48,14 +48,14 @@
     </style>
     
     <g id="log-group" transform="translate(30, 80)" fill="#C9D1D9">
-      <text y="0" class="log-line" style="animation: fadeIn 0.5s 0.5s forwards;">&gt; Loading profile...</text>
-      <text y="20" class="log-line" style="animation: fadeIn 0.5s 1.5s forwards;">&gt; Access granted <tspan fill="#00FF41">✔</tspan></text>
-      <text y="40" class="log-line" style="animation: fadeIn 0.5s 2.5s forwards;">&gt; Fetching repository data...</text>
-      <text y="60" class="log-line" style="animation: fadeIn 0.5s 3.5s forwards;">&gt; Displaying metrics.</text>
+      <text y="0" class="log-line" style="animation: fadeIn 0.5s 0.5s forwards;">&gt; Executing welcome script...</text>
+      <text y="20" class="log-line" style="animation: fadeIn 0.5s 1.5s forwards;">&gt; Authenticating chridamico... <tspan fill="#00FF41">✔</tspan></text>
+      <text y="40" class="log-line" style="animation: fadeIn 0.5s 2.5s forwards;">&gt; Hello! Welcome back. 👋</text>
+      <text y="60" class="log-line" style="animation: fadeIn 0.5s 3.5s forwards;">&gt; Loading GitHub dashboard...</text>
     </g>
 
-    <g id="dashboard-group" transform="translate(600, 70)">
-      <rect x="0" y="0" width="570" height="100" rx="8" fill="#0D1117" stroke="#30363D"/>
+    <g id="dashboard-group" transform="translate(600, 65)">
+      <rect x="0" y="0" width="570" height="100" rx="8" fill="#21262D" stroke="#30363D"/>
       
       <text x="15" y="20" fill="#A5D6FF" font-size="13" font-weight="bold">&gt; GitHub Metrics</text>
 
