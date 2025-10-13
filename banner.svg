@@ -1,40 +1,69 @@
-<svg width="100%" height="180" viewBox="0 0 800 180" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <rect width="800" height="180" fill="#000000" />
-
-  <!-- Grid pattern -->
+<svg width="800" height="180" viewBox="0 0 800 180" xmlns="http://www.w3.org/2000/svg">
   <defs>
+    <!-- Glow filter -->
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Grid pattern -->
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M40 0H0V40" fill="none" stroke="#00FF41" stroke-width="0.3" opacity="0.2" />
+      <path d="M40 0H0V40" fill="none" stroke="#00FF41" stroke-width="0.3" opacity="0.15"/>
     </pattern>
-    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#00FF41" stop-opacity="1" />
-      <stop offset="100%" stop-color="#00AA33" stop-opacity="1" />
+
+    <!-- Scanline overlay -->
+    <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
+      <path d="M 0 1 H 4" stroke="#00FF41" stroke-width="0.5" stroke-opacity="0.08"/>
+    </pattern>
+
+    <!-- Gradient for neon glow -->
+    <linearGradient id="neon" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00FF41"/>
+      <stop offset="100%" stop-color="#00AA33"/>
     </linearGradient>
   </defs>
-  <rect width="800" height="180" fill="url(#grid)" />
 
-  <!-- Glowing name -->
-  <text x="50%" y="55%" font-size="64" font-family="Fira Code, monospace"
-        text-anchor="middle" fill="url(#glow)" stroke="#00FF41" stroke-width="1">
-    Christian_
+  <!-- Background -->
+  <rect width="800" height="180" fill="#0D1117"/>
+  <rect x="10" y="10" width="780" height="160" rx="8" fill="#161B22" stroke="#30363D" stroke-width="1"/>
+
+  <!-- Terminal top bar -->
+  <g transform="translate(20,20)">
+    <circle cx="5" cy="5" r="5" fill="#FF5F56"/>
+    <circle cx="25" cy="5" r="5" fill="#FFBD2E"/>
+    <circle cx="45" cy="5" r="5" fill="#27C93F"/>
+  </g>
+  <text x="400" y="30" font-family="monospace" font-size="12" fill="#C9D1D9" text-anchor="middle">
+    bash -- ~
   </text>
 
-  <!-- Cursor blink animation -->
-  <text x="58%" y="55%" font-size="64" font-family="Fira Code, monospace"
-        fill="#00FF41">
-    <tspan id="cursor">|</tspan>
-    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+  <!-- Grid overlay -->
+  <rect width="800" height="180" fill="url(#grid)" opacity="0.2"/>
+
+  <!-- Terminal prompt with blinking cursor -->
+  <text x="30" y="80" font-family="monospace" font-size="18" fill="#00FF41" filter="url(#glow)">
+    <tspan fill="#A5D6FF">[chridamico@github]</tspan>
+    <tspan> $ Christian_</tspan>
+    <tspan>
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>|
+    </tspan>
   </text>
 
-  <!-- Scanline animation -->
-  <rect x="0" y="-180" width="800" height="180" fill="rgba(0,255,65,0.15)">
-    <animate attributeName="y" from="-180" to="180" dur="3s" repeatCount="indefinite" />
+  <!-- Subtext terminal lines -->
+  <g transform="translate(30,120)" font-family="monospace" font-size="16">
+    <text y="0" fill="#C9D1D9">> Loading profile...</text>
+    <text y="25" fill="#C9D1D9">> Access granted <tspan fill="#00FF41">✔</tspan></text>
+    <text y="50" fill="#C9D1D9">> Enjoy coding 💻</text>
+  </g>
+
+  <!-- Animated scanline -->
+  <rect x="0" y="-180" width="800" height="180" fill="rgba(0,255,65,0.08)">
+    <animate attributeName="y" from="-180" to="180" dur="3s" repeatCount="indefinite"/>
   </rect>
 
-  <!-- Subtext -->
-  <text x="50%" y="80%" font-size="18" font-family="Fira Code, monospace"
-        text-anchor="middle" fill="#00FF41" opacity="0.8">
-    > Coding in progress..._access granted 💻
-  </text>
+  <!-- Scanline overlay -->
+  <rect x="10" y="10" width="780" height="160" fill="url(#scanlines)" pointer-events="none"/>
 </svg>
