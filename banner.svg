@@ -43,28 +43,35 @@
     </linearGradient>
 
     <!-- Background radial spotlight (brightened) -->
-    <radialGradient id="spotlight" cx="50%" cy="45%" r="55%">
-      <stop offset="0%" stop-color="#0A1410"/>
-      <stop offset="50%" stop-color="#081210"/>
-      <stop offset="100%" stop-color="#050A08"/>
+    <radialGradient id="spotlight" cx="50%" cy="44%" r="54%">
+      <stop offset="0%" stop-color="#102019"/>
+      <stop offset="42%" stop-color="#091511"/>
+      <stop offset="100%" stop-color="#040806"/>
     </radialGradient>
 
-    <!-- Vignette (r=50%) -->
-    <radialGradient id="vignette" cx="50%" cy="45%" r="50%">
+    <!-- Vignette (r=52%) -->
+    <radialGradient id="vignette" cx="50%" cy="45%" r="52%">
       <stop offset="0%" stop-color="transparent"/>
-      <stop offset="100%" stop-color="#020504" stop-opacity="0.40"/>
+      <stop offset="100%" stop-color="#020504" stop-opacity="0.34"/>
     </radialGradient>
 
     <!-- Center warmth -->
-    <radialGradient id="centerWarmth" cx="50%" cy="42%" r="32%">
-      <stop offset="0%" stop-color="#0E2016" stop-opacity="0.09"/>
+    <radialGradient id="centerWarmth" cx="50%" cy="42%" r="36%">
+      <stop offset="0%" stop-color="#173124" stop-opacity="0.14"/>
       <stop offset="100%" stop-color="transparent"/>
     </radialGradient>
 
     <!-- String zone glow -->
-    <radialGradient id="stringGlow" cx="50%" cy="50%" r="25%">
-      <stop offset="0%" stop-color="#CBA860" stop-opacity="0.03"/>
+    <radialGradient id="stringGlow" cx="50%" cy="50%" r="32%">
+      <stop offset="0%" stop-color="#CBA860" stop-opacity="0.05"/>
+      <stop offset="58%" stop-color="#CBA860" stop-opacity="0.016"/>
       <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+
+    <!-- Mid-field density zones -->
+    <radialGradient id="bridgeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#CBA860" stop-opacity="0.018"/>
+      <stop offset="100%" stop-color="#CBA860" stop-opacity="0"/>
     </radialGradient>
 
     <!-- Constellation nebula auras -->
@@ -77,11 +84,11 @@
       <stop offset="100%" stop-color="#58B8B0" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="auraLL" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#CBA860" stop-opacity="0.008"/>
+      <stop offset="0%" stop-color="#CBA860" stop-opacity="0.013"/>
       <stop offset="100%" stop-color="#CBA860" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="auraLR" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#CBA860" stop-opacity="0.008"/>
+      <stop offset="0%" stop-color="#CBA860" stop-opacity="0.013"/>
       <stop offset="100%" stop-color="#CBA860" stop-opacity="0"/>
     </radialGradient>
 
@@ -101,7 +108,7 @@
       <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="grain"/>
       <feColorMatrix type="saturate" values="0" in="grain" result="desaturated"/>
       <feComponentTransfer in="desaturated" result="faded">
-        <feFuncA type="linear" slope="0.012"/>
+        <feFuncA type="linear" slope="0.009"/>
       </feComponentTransfer>
       <feBlend in="SourceGraphic" in2="faded" mode="screen"/>
     </filter>
@@ -132,6 +139,8 @@
   <rect width="1200" height="280" fill="url(#stringGlow)"/>
   <rect width="1200" height="280" fill="url(#vignette)"/>
   <rect width="1200" height="280" filter="url(#noise)" fill="transparent"/>
+  <ellipse cx="340" cy="142" rx="150" ry="82" fill="url(#bridgeGlow)"/>
+  <ellipse cx="860" cy="138" rx="158" ry="86" fill="url(#bridgeGlow)" opacity="0.8"/>
 
   <!-- ══════════════════════════════════════════════════════════ -->
   <!-- L0.5 · FRAME                                              -->
@@ -167,7 +176,7 @@
   <!-- ══════════════════════════════════════════════════════════ -->
 
   <!-- Upper-left: URSA MAJOR (Big Dipper) -->
-  <g>
+  <g transform="translate(44 8)">
     <ellipse cx="130" cy="55" rx="110" ry="45" fill="url(#auraUL)"/>
 
     <!-- Connections (cup: Dubhe–Merak–Phecda–Megrez–Dubhe, handle: Megrez–Alioth–Mizar–Alkaid) -->
@@ -198,7 +207,7 @@
   </g>
 
   <!-- Upper-right: LYRA (The Lyre — Orpheus's instrument) -->
-  <g>
+  <g transform="translate(-44 8)">
     <ellipse cx="1092" cy="52" rx="60" ry="42" fill="url(#auraUR)"/>
 
     <!-- Connections (lyre shape) -->
@@ -224,29 +233,29 @@
   </g>
 
   <!-- Lower-left cluster (abstract, refined) -->
-  <g>
+  <g transform="translate(56 -20)">
     <ellipse cx="110" cy="218" rx="80" ry="28" fill="url(#auraLL)"/>
-    <line x1="72" y1="202" x2="138" y2="220" stroke="#CBA860" stroke-width="0.2" opacity="0.045"/>
-    <line x1="138" y1="220" x2="195" y2="206" stroke="#CBA860" stroke-width="0.2" opacity="0.040"/>
-    <line x1="72" y1="202" x2="42" y2="232" stroke="#CBA860" stroke-width="0.2" opacity="0.035"/>
-    <circle cx="72" cy="202" r="0.9" fill="#CBA860" opacity="0.10"/>
-    <circle cx="138" cy="220" r="1.1" fill="#CBA860" opacity="0.11"
-            class="node" style="--dur:12s;--del:2s;--lo:.07;--hi:.14"/>
-    <circle cx="195" cy="206" r="0.7" fill="#58B8B0" opacity="0.08"/>
-    <circle cx="42" cy="232" r="0.6" fill="#CBA860" opacity="0.06"/>
+    <line x1="72" y1="202" x2="138" y2="220" stroke="#CBA860" stroke-width="0.2" opacity="0.058"/>
+    <line x1="138" y1="220" x2="195" y2="206" stroke="#CBA860" stroke-width="0.2" opacity="0.050"/>
+    <line x1="72" y1="202" x2="42" y2="232" stroke="#CBA860" stroke-width="0.2" opacity="0.043"/>
+    <circle cx="72" cy="202" r="0.95" fill="#CBA860" opacity="0.12"/>
+    <circle cx="138" cy="220" r="1.15" fill="#CBA860" opacity="0.13"
+            class="node" style="--dur:12s;--del:2s;--lo:.09;--hi:.17"/>
+    <circle cx="195" cy="206" r="0.8" fill="#58B8B0" opacity="0.10"/>
+    <circle cx="42" cy="232" r="0.65" fill="#CBA860" opacity="0.08"/>
   </g>
 
   <!-- Lower-right cluster (abstract, refined) -->
-  <g>
+  <g transform="translate(-56 -20)">
     <ellipse cx="1085" cy="220" rx="80" ry="26" fill="url(#auraLR)"/>
-    <line x1="1010" y1="208" x2="1075" y2="224" stroke="#CBA860" stroke-width="0.2" opacity="0.045"/>
-    <line x1="1075" y1="224" x2="1130" y2="210" stroke="#CBA860" stroke-width="0.2" opacity="0.040"/>
-    <line x1="1130" y1="210" x2="1158" y2="234" stroke="#CBA860" stroke-width="0.2" opacity="0.035"/>
-    <circle cx="1010" cy="208" r="0.8" fill="#CBA860" opacity="0.10"/>
-    <circle cx="1075" cy="224" r="1.0" fill="#CBA860" opacity="0.11"
-            class="node" style="--dur:9s;--del:3s;--lo:.07;--hi:.14"/>
-    <circle cx="1130" cy="210" r="0.7" fill="#CBA860" opacity="0.08"/>
-    <circle cx="1158" cy="234" r="0.6" fill="#CBA860" opacity="0.06"/>
+    <line x1="1010" y1="208" x2="1075" y2="224" stroke="#CBA860" stroke-width="0.2" opacity="0.058"/>
+    <line x1="1075" y1="224" x2="1130" y2="210" stroke="#CBA860" stroke-width="0.2" opacity="0.050"/>
+    <line x1="1130" y1="210" x2="1158" y2="234" stroke="#CBA860" stroke-width="0.2" opacity="0.043"/>
+    <circle cx="1010" cy="208" r="0.86" fill="#CBA860" opacity="0.12"/>
+    <circle cx="1075" cy="224" r="1.08" fill="#CBA860" opacity="0.13"
+            class="node" style="--dur:9s;--del:3s;--lo:.09;--hi:.17"/>
+    <circle cx="1130" cy="210" r="0.76" fill="#CBA860" opacity="0.10"/>
+    <circle cx="1158" cy="234" r="0.64" fill="#CBA860" opacity="0.08"/>
   </g>
 
   <!-- Lone ambient particles -->
@@ -257,6 +266,26 @@
   <circle cx="560" cy="20" r="0.4" fill="#CBA860" opacity="0.04"/>
   <circle cx="640" cy="16" r="0.35" fill="#CBA860" opacity="0.04"/>
 
+  <!-- Mid-field bridge structure -->
+  <g>
+    <path d="M228,171 C292,145 350,130 414,130" fill="none"
+          stroke="#CBA860" stroke-width="0.22" opacity="0.050"/>
+    <path d="M972,170 C910,144 852,129 788,129" fill="none"
+          stroke="#58B8B0" stroke-width="0.22" opacity="0.042"/>
+    <path d="M246,116 C302,128 348,132 396,131" fill="none"
+          stroke="#CBA860" stroke-width="0.16" opacity="0.030"/>
+    <path d="M954,114 C900,126 854,130 804,130" fill="none"
+          stroke="#CBA860" stroke-width="0.16" opacity="0.026"/>
+    <line x1="232" y1="171" x2="291" y2="140" stroke="#CBA860" stroke-width="0.18" opacity="0.024"/>
+    <line x1="968" y1="170" x2="909" y2="140" stroke="#CBA860" stroke-width="0.18" opacity="0.020"/>
+    <circle cx="252" cy="162" r="0.85" fill="#CBA860" opacity="0.11"/>
+    <circle cx="318" cy="138" r="0.65" fill="#CBA860" opacity="0.08"/>
+    <circle cx="374" cy="130" r="0.72" fill="#58B8B0" opacity="0.09"/>
+    <circle cx="946" cy="161" r="0.85" fill="#CBA860" opacity="0.10"/>
+    <circle cx="882" cy="137" r="0.65" fill="#CBA860" opacity="0.08"/>
+    <circle cx="826" cy="129" r="0.72" fill="#58B8B0" opacity="0.08"/>
+  </g>
+
   <!-- ══════════════════════════════════════════════════════════ -->
   <!-- L2 · STANDING WAVE HARMONICS                              -->
   <!-- Ghost curves: vibration modes of the 618px string.        -->
@@ -265,17 +294,17 @@
 
   <!-- Fundamental (1st harmonic) — one arch above -->
   <path d="M291,140 C380,112 480,104 600,104 C720,104 820,112 909,140"
-        stroke="#CBA860" stroke-width="0.50" fill="none" opacity="0.06"/>
+        stroke="#CBA860" stroke-width="0.54" fill="none" opacity="0.072"/>
 
   <!-- Fundamental — mirror below (fainter) -->
   <path d="M291,140 C380,160 480,164 600,164 C720,164 820,160 909,140"
-        stroke="#CBA860" stroke-width="0.40" fill="none" opacity="0.035"/>
+        stroke="#CBA860" stroke-width="0.42" fill="none" opacity="0.040"/>
 
   <!-- 2nd harmonic — two arches above -->
   <path d="M291,140 C335,126 380,122 446,122 C510,122 555,126 600,140"
-        stroke="#CBA860" stroke-width="0.35" fill="none" opacity="0.045"/>
+        stroke="#CBA860" stroke-width="0.38" fill="none" opacity="0.052"/>
   <path d="M600,140 C645,126 690,122 755,122 C820,122 865,126 909,140"
-        stroke="#CBA860" stroke-width="0.35" fill="none" opacity="0.045"/>
+        stroke="#CBA860" stroke-width="0.38" fill="none" opacity="0.052"/>
 
   <!-- 3rd harmonic — three arches above -->
   <path d="M291,140 C310,130 330,127 394,127 C430,127 445,130 497,140"
@@ -286,7 +315,7 @@
         stroke="#CBA860" stroke-width="0.30" fill="none" opacity="0.025"/>
 
   <!-- Diffuse harmonic glow -->
-  <ellipse cx="600" cy="140" rx="310" ry="22" fill="#CBA860" opacity="0.018" filter="url(#glow)"/>
+  <ellipse cx="600" cy="140" rx="330" ry="28" fill="#CBA860" opacity="0.024" filter="url(#glow)"/>
 
   <!-- ══════════════════════════════════════════════════════════ -->
   <!-- L3 · THE HARMONIC STRING                                  -->
@@ -302,15 +331,15 @@
 
   <!-- String glow halo -->
   <line x1="291" y1="140" x2="909" y2="140"
-        stroke="#CBA860" stroke-width="8" opacity="0.03" filter="url(#glowSm)"/>
+        stroke="#CBA860" stroke-width="10" opacity="0.048" filter="url(#glowSm)"/>
 
   <!-- String line -->
   <line x1="291" y1="140" x2="909" y2="140"
-        stroke="url(#string)" stroke-width="0.7"/>
+        stroke="url(#string)" stroke-width="0.82"/>
 
   <!-- Energy pulse (traveling golden light, 14s cycle) -->
   <line x1="291" y1="140" x2="909" y2="140"
-        stroke="url(#pulse)" stroke-width="1.8" stroke-linecap="round"/>
+        stroke="url(#pulse)" stroke-width="2.2" stroke-linecap="round"/>
 
   <!-- Bridge-pin marks (perpendicular ticks at endpoints) -->
   <line x1="291" y1="137" x2="291" y2="143" stroke="#9A8A58" stroke-width="0.6" opacity="0.20"/>
@@ -321,36 +350,36 @@
   <circle cx="909" cy="140" r="1.2" fill="#9A8A58" opacity="0.22"/>
 
   <!-- 1:2 · Octave — the brightest node -->
-  <circle cx="600" cy="140" r="14" fill="#CBA860" opacity="0.018" filter="url(#glowSm)"/>
-  <circle cx="600" cy="140" r="8" fill="#CBA860" opacity="0.028" filter="url(#glowXs)"/>
-  <circle cx="600" cy="140" r="3.5" fill="#E0C878" opacity="0.55"
-          class="node" style="--dur:8s;--del:0s;--lo:.45;--hi:.65"/>
+  <circle cx="600" cy="140" r="16" fill="#CBA860" opacity="0.024" filter="url(#glowSm)"/>
+  <circle cx="600" cy="140" r="9" fill="#CBA860" opacity="0.038" filter="url(#glowXs)"/>
+  <circle cx="600" cy="140" r="3.9" fill="#E0C878" opacity="0.60"
+          class="node" style="--dur:8s;--del:0s;--lo:.50;--hi:.70"/>
 
   <!-- 2:3 · Perfect fifth -->
-  <circle cx="497" cy="140" r="6" fill="#CBA860" opacity="0.018" filter="url(#glowXs)"/>
-  <circle cx="497" cy="140" r="2.5" fill="#D4BC78" opacity="0.40"
-          class="node" style="--dur:9s;--del:1.5s;--lo:.30;--hi:.50"/>
-  <circle cx="703" cy="140" r="6" fill="#CBA860" opacity="0.018" filter="url(#glowXs)"/>
-  <circle cx="703" cy="140" r="2.5" fill="#D4BC78" opacity="0.40"
-          class="node" style="--dur:9s;--del:2.5s;--lo:.30;--hi:.50"/>
+  <circle cx="497" cy="140" r="6.8" fill="#CBA860" opacity="0.022" filter="url(#glowXs)"/>
+  <circle cx="497" cy="140" r="2.8" fill="#D4BC78" opacity="0.44"
+          class="node" style="--dur:9s;--del:1.5s;--lo:.34;--hi:.54"/>
+  <circle cx="703" cy="140" r="6.8" fill="#CBA860" opacity="0.022" filter="url(#glowXs)"/>
+  <circle cx="703" cy="140" r="2.8" fill="#D4BC78" opacity="0.44"
+          class="node" style="--dur:9s;--del:2.5s;--lo:.34;--hi:.54"/>
 
   <!-- 3:4 · Perfect fourth -->
-  <circle cx="446" cy="140" r="2.0" fill="#D4BC78" opacity="0.33"
-          class="node" style="--dur:12s;--del:3s;--lo:.24;--hi:.42"/>
-  <circle cx="755" cy="140" r="2.0" fill="#D4BC78" opacity="0.33"
-          class="node" style="--dur:12s;--del:4s;--lo:.24;--hi:.42"/>
+  <circle cx="446" cy="140" r="2.15" fill="#D4BC78" opacity="0.36"
+          class="node" style="--dur:12s;--del:3s;--lo:.27;--hi:.45"/>
+  <circle cx="755" cy="140" r="2.15" fill="#D4BC78" opacity="0.36"
+          class="node" style="--dur:12s;--del:4s;--lo:.27;--hi:.45"/>
 
   <!-- 4:5 · Major third — teal (music × math intersection) -->
-  <circle cx="415" cy="140" r="1.5" fill="#58B8B0" opacity="0.28"
-          class="node" style="--dur:8s;--del:5s;--lo:.20;--hi:.37"/>
-  <circle cx="785" cy="140" r="1.5" fill="#58B8B0" opacity="0.28"
-          class="node" style="--dur:8s;--del:5.5s;--lo:.20;--hi:.37"/>
+  <circle cx="415" cy="140" r="1.65" fill="#58B8B0" opacity="0.31"
+          class="node" style="--dur:8s;--del:5s;--lo:.23;--hi:.40"/>
+  <circle cx="785" cy="140" r="1.65" fill="#58B8B0" opacity="0.31"
+          class="node" style="--dur:8s;--del:5.5s;--lo:.23;--hi:.40"/>
 
   <!-- 5:6 · Minor third -->
-  <circle cx="394" cy="140" r="1.2" fill="#CBA860" opacity="0.18"
-          class="node" style="--dur:9s;--del:6s;--lo:.14;--hi:.23"/>
-  <circle cx="806" cy="140" r="1.2" fill="#CBA860" opacity="0.18"
-          class="node" style="--dur:9s;--del:6.5s;--lo:.14;--hi:.23"/>
+  <circle cx="394" cy="140" r="1.3" fill="#CBA860" opacity="0.20"
+          class="node" style="--dur:9s;--del:6s;--lo:.16;--hi:.25"/>
+  <circle cx="806" cy="140" r="1.3" fill="#CBA860" opacity="0.20"
+          class="node" style="--dur:9s;--del:6.5s;--lo:.16;--hi:.25"/>
 
   <!-- Ratio labels (Easter eggs — visible only at full zoom) -->
   <text x="600" y="154" text-anchor="middle"
@@ -381,32 +410,26 @@
 
   <!-- ══════════════════════════════════════════════════════════ -->
   <!-- L4 · TYPOGRAPHY                                           -->
-  <!-- Name at y=107 (golden section: 280 × 0.382)              -->
-  <!-- Subtitle at y=173 (conjugate: 280 × 0.618)               -->
+  <!-- Name anchored at y=106 with an inline cursor             -->
+  <!-- Subtitle at y=168 for a tighter identity band            -->
   <!-- ══════════════════════════════════════════════════════════ -->
 
   <!-- Name glow -->
-  <text x="582" y="107" text-anchor="middle"
+  <text x="587" y="106" text-anchor="middle"
         font-family="'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, 'DejaVu Serif', serif"
-        font-size="46" font-weight="400" fill="#CBA860" letter-spacing="5" opacity="0.05"
+        font-size="51" font-weight="400" fill="#CBA860" letter-spacing="4.6" opacity="0.068"
         filter="url(#glow)">chridamico</text>
 
   <!-- Name -->
-  <text x="582" y="107" text-anchor="middle"
+  <text x="587" y="106" text-anchor="middle"
         font-family="'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, 'DejaVu Serif', serif"
-        font-size="46" font-weight="400" fill="url(#shimmer)" letter-spacing="5">chridamico</text>
-
-  <!-- Blinking cursor (peak opacity = 0.618 = 1/φ) -->
-  <text x="728" y="105"
-        font-family="'Palatino Linotype', Palatino, Georgia, 'DejaVu Serif', serif"
-        font-size="46" font-weight="300" fill="#CBA860"
-        class="cursor">_</text>
+        font-size="51" font-weight="400" fill="url(#shimmer)" letter-spacing="4.6">chridamico<tspan class="cursor" dx="0.14em" fill="#CBA860" font-weight="300">_</tspan></text>
 
   <!-- Subtitle -->
-  <text x="600" y="173" text-anchor="middle"
+  <text x="600" y="168" text-anchor="middle"
         font-family="'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, 'DejaVu Sans Mono', monospace"
-        font-size="11" font-weight="400" fill="#9A8A58" letter-spacing="5"
-        opacity="0.48">ARCHITECT  &#x00B7;  MUSICIAN  &#x00B7;  FOUNDER</text>
+        font-size="12" font-weight="400" fill="#A79662" letter-spacing="4.4"
+        opacity="0.58">ARCHITECT  &#x00B7;  MUSICIAN  &#x00B7;  FOUNDER</text>
 
   <!-- ══════════════════════════════════════════════════════════ -->
   <!-- L5 · $WHOAMI SIGNATURE                                    -->
